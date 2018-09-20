@@ -7,7 +7,7 @@ var request = require("request");
 var exphbs = require("express-handlebars");
 var db = require("./models");
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3021;
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/wiredDB";
 
@@ -100,7 +100,7 @@ app.post("/articles/:id", function(req, res){
 
 app.post("/delete/:id/:articleId", function (req, res) {
     db.Comment.deleteOne({_id: req.params.id})
-        .then(function (dbNote) {
+        .then(function (dbComment) {
             return db.Article.findOneAndUpdate({
                 _id: req.params.articleId
             }, {
